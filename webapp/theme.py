@@ -43,6 +43,21 @@ def inject_base_css():
         color: #EAFBF0 !important;
     }}
 
+    /* Kotak input di sidebar (text_input, textarea, dsb) tetap berlatar putih,
+       jadi teksnya harus gelap supaya kebaca -- jangan ikut aturan putih di atas */
+    section[data-testid="stSidebar"] input,
+    section[data-testid="stSidebar"] textarea,
+    section[data-testid="stSidebar"] [data-baseweb="input"],
+    section[data-testid="stSidebar"] [data-baseweb="textarea"],
+    section[data-testid="stSidebar"] [data-baseweb="select"] * {{
+        color: {PRIMARY_DARK} !important;
+        background-color: #FFFFFF !important;
+    }}
+    section[data-testid="stSidebar"] input::placeholder,
+    section[data-testid="stSidebar"] textarea::placeholder {{
+        color: #7A9C8C !important;
+    }}
+
     /* Hero banner */
     .hero-box {{
         background: linear-gradient(120deg, {PRIMARY_DARK} 0%, {PRIMARY} 55%, {PRIMARY_BRIGHT} 100%);
