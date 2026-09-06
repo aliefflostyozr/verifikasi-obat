@@ -1,5 +1,6 @@
 """
-4_ℹ️_Tentang.py — Tentang proyek + panduan setup lengkap dari hasil Kaggle ke Streamlit.
+4_ℹ️_Tentang.py - Halaman informasi untuk pengunjung website: penjelasan sistem,
+isi website, cara pakai, tujuan, dan keterbatasannya.
 """
 import sys
 from pathlib import Path
@@ -7,111 +8,156 @@ from pathlib import Path
 import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from theme import page_setup, hero, section_title, icon
+from theme import page_setup, hero, section_title, icon, feature_card
 
-page_setup("Tentang & Setup — Sistem Verifikasi Obat", "ℹ️")
-hero("Panduan Lengkap", "ℹ️ Tentang Proyek &amp; Cara Setup",
-     "Ringkasan proyek, arsitektur sistem, dan langkah demi langkah menghubungkan hasil "
-     "training Kaggle ke website ini.")
+page_setup("Tentang - Sistem Verifikasi Obat", "ℹ️")
+hero("Informasi untuk Pengunjung", "ℹ️ Tentang Website Ini",
+     "Penjelasan lengkap tentang apa itu Sistem Verifikasi Obat Otomatis, apa saja isinya, "
+     "cara memakainya, tujuan pembuatannya, dan batasan yang perlu Anda ketahui.")
 
-section_title("hospital", "Tentang Proyek")
+# ------------------------------------------------------------------
+# 1. Apa itu sistem ini
+# ------------------------------------------------------------------
+section_title("hospital", "Apa Itu Sistem Verifikasi Obat Otomatis")
 st.markdown("""
-**Sistem Verifikasi Obat Otomatis** adalah prototipe riset Fase 1 kerja sama
+**Sistem Verifikasi Obat Otomatis** adalah website prototipe riset hasil kerja sama
 **Institut Teknologi Sepuluh Nopember (ITS)** dan **Instalasi Farmasi RSUD Haji Surabaya**.
-Sistem ini memakai *computer vision* dua tahap:
 
-1. **Detector (YOLOv8n)** — menemukan & menghitung jumlah pil pada foto meja penyiapan obat.
-2. **Classifier (MobileNetV3-Small / EfficientNet / ResNet / DenseNet)** — mengenali jenis
-   obat per pil yang terdeteksi (opsional, dilatih dari dataset MEDISEG).
+Website ini dibuat untuk membantu tenaga farmasi memeriksa apakah obat yang sudah disiapkan
+di meja penyiapan sudah sesuai dengan resep pasien (e-resep), memakai teknologi
+*computer vision* (AI pengenal gambar). Caranya:
 
-Hasil deteksi kemudian dicocokkan dengan data **e-resep** lewat modul `eresep_matcher.py`,
-menghasilkan status **SESUAI / TIDAK SESUAI / TIDAK YAKIN / GANGGUAN DATA**. Sistem ini
-bersifat *human-in-the-loop* — keputusan klinis akhir selalu ada di tangan tenaga farmasi.
+1. Foto meja penyiapan obat diambil.
+2. Sistem AI mendeteksi dan menghitung setiap pil/obat yang ada di foto, lalu (kalau
+   modul jenis obatnya aktif) mengenali jenis obatnya juga.
+3. Hasil hitungan itu dicocokkan secara otomatis dengan daftar e-resep.
+4. Website menampilkan status: **SESUAI**, **TIDAK SESUAI**, **TIDAK YAKIN**, atau
+   **GANGGUAN DATA**.
+
+Prinsip utama sistem ini adalah ***human-in-the-loop***: AI hanya membantu mempercepat
+pengecekan, sementara keputusan akhir soal kesesuaian obat tetap sepenuhnya berada di
+tangan apoteker atau tenaga farmasi yang bertugas.
 """)
 
-section_title("flask", "Langkah Setup: dari Kaggle ke Website Ini")
+# ------------------------------------------------------------------
+# 2. Isi website
+# ------------------------------------------------------------------
+section_title("flask", "Isi Website Ini")
+st.markdown("Website ini terdiri dari empat halaman, semuanya bisa diakses lewat menu di sidebar sebelah kiri:")
 
-steps = [
-    ("1️⃣ Selesaikan & simpan notebook Kaggle",
-     "Jalankan `pill_verification_full_pipeline.py` (atau versi .ipynb-nya) di Kaggle sampai "
-     "selesai, lalu klik **Save Version → Save & Run All (Commit)**. Ini penting — tanpa "
-     "Save Version, semua file di `/kaggle/working` akan hilang saat sesi berakhir."),
-    ("2️⃣ Unduh paket hasil dari tab Output",
-     "Buka tab **Output** notebook Kaggle setelah commit selesai. Unduh dua file:\n"
-     "- `research_package_journal.zip` (semua bobot model + metrik + eksperimen jurnal)\n"
-     "- `data/test_package.zip` (foto uji + manifest ground truth, untuk Dashboard Pengujian)"),
-    ("3️⃣ Ekstrak ke struktur folder proyek",
-     "Ekstrak isi `research_package_journal.zip` ke folder `project_root/` (folder yang sama "
-     "yang berisi folder `webapp/` ini), lalu susun ulang sedikit:\n\n"
-     "```\n"
-     "project_root/\n"
-     "├── webapp/                          <- folder ini\n"
-     "│   ├── streamlit_app.py\n"
-     "│   ├── runs/\n"
-     "│   │   ├── detect/pill_detector/weights/best.pt      <- dari detector_main_best.pt\n"
-     "│   │   └── classify_final/\n"
-     "│   │       ├── best.pt                                <- dari classifier_main_best.pt\n"
-     "│   │       └── class_names.json                       <- dari classifier_main_class_names.json\n"
-     "│   └── ...\n"
-     "├── journal_experiments/             <- dari research_package_journal.zip\n"
-     "├── streamlit_manifest.json          <- dari research_package_journal.zip\n"
-     "└── data/\n"
-     "    └── test_package/                <- dari test_package.zip (folder photos/ + manifest.json)\n"
-     "```\n\n"
-     "Cara tercepat: jalankan script `setup_from_kaggle_package.py` yang disertakan dalam paket "
-     "zip website ini — otomatis menaruh semua file ke lokasi yang benar:\n\n"
-     "```bash\n"
-     "python setup_from_kaggle_package.py \\\n"
-     "    --research-zip ~/Downloads/research_package_journal.zip \\\n"
-     "    --test-package-zip ~/Downloads/test_package.zip\n"
-     "```"),
-    ("4️⃣ Install dependency Python",
-     "```bash\n"
-     "pip install -r webapp/requirements.txt\n"
-     "```"),
-    ("5️⃣ Jalankan website",
-     "```bash\n"
-     "streamlit run webapp/streamlit_app.py\n"
-     "```\n"
-     "Buka `http://localhost:8501` di browser. Halaman **🔬 Verifikasi Foto** dan "
-     "**📊 Dashboard Pengujian** akan otomatis mendeteksi model di `webapp/runs/`."),
-    ("6️⃣ (Opsional) Lihat hasil riset lengkap",
-     "Buka halaman **📈 Hasil Riset** dan pastikan path di sidebar menunjuk ke folder "
-     "`journal_experiments/` hasil ekstraksi tadi, untuk melihat semua tabel & grafik "
-     "eksperimen Q1 (baseline, ablation, latency, Grad-CAM, dll)."),
-]
+f1, f2 = st.columns(2)
+with f1:
+    feature_card("scan", "🔬 Verifikasi Foto",
+                  "Untuk mengecek satu foto meja penyiapan obat. Upload foto, isi daftar "
+                  "e-resep, lalu sistem langsung menampilkan hasil deteksi dan status kecocokannya.")
+with f2:
+    feature_card("chart", "📊 Dashboard Pengujian",
+                  "Untuk menguji kemampuan sistem sekaligus pada banyak foto (pengujian batch), "
+                  "lengkap dengan angka akurasi dan rincian hasil per foto.")
+st.write("")
+f3, f4 = st.columns(2)
+with f3:
+    feature_card("brain", "📈 Hasil Riset",
+                  "Berisi seluruh hasil eksperimen ilmiah di balik sistem ini: perbandingan "
+                  "beberapa model AI, uji ketahanan sistem, kecepatan pemrosesan, hingga "
+                  "visualisasi bagian gambar yang jadi perhatian AI saat mengambil keputusan.")
+with f4:
+    feature_card("hospital", "ℹ️ Tentang",
+                  "Halaman yang sedang Anda baca ini - penjelasan umum, cara pakai, tujuan, "
+                  "dan keterbatasan website.")
 
-for title, body in steps:
-    with st.expander(title, expanded=False):
-        st.markdown(body)
+# ------------------------------------------------------------------
+# 3. Cara menggunakan website
+# ------------------------------------------------------------------
+section_title("scan", "Cara Menggunakan Website Ini")
 
-section_title("shield", "Struktur Folder Akhir yang Diharapkan")
-st.code("""
-project_root/
-├── webapp/
-│   ├── streamlit_app.py
-│   ├── theme.py
-│   ├── config.py, eresep_matcher.py, visualize.py, pipeline.py
-│   ├── pages/
-│   │   ├── 1_🔬_Verifikasi_Foto.py
-│   │   ├── 2_📊_Dashboard_Pengujian.py
-│   │   ├── 3_📈_Hasil_Riset.py
-│   │   └── 4_ℹ️_Tentang.py
-│   ├── runs/
-│   │   ├── detect/pill_detector/weights/best.pt
-│   │   └── classify_final/{best.pt, class_names.json}
-│   ├── requirements.txt
-│   └── setup_from_kaggle_package.py
-├── journal_experiments/
-├── streamlit_manifest.json
-└── data/test_package/{photos/, manifest.json}
-""", language="text")
+with st.expander("🔬 Cara memakai halaman Verifikasi Foto", expanded=True):
+    st.markdown("""
+1. Buka halaman **🔬 Verifikasi Foto** dari sidebar.
+2. Pada bagian **1. Upload Foto**, unggah satu foto meja penyiapan obat (format JPG, JPEG,
+   PNG, atau BMP).
+3. Pada bagian **2. Data E-Resep**, isi daftar obat sesuai resep pasien: nama obat dan
+   jumlah yang seharusnya ada. Anda bisa menambah baris obat dengan tombol **➕ Tambah obat**,
+   atau menghapus baris dengan tombol **🗑️ Hapus**.
+4. Klik tombol **🚀 Jalankan Verifikasi**.
+5. Dalam beberapa detik, sistem akan menampilkan foto hasil deteksi (kotak hijau berarti
+   sesuai, merah berarti tidak sesuai, oranye berarti tidak yakin) beserta status akhir dan
+   rincian jumlah per jenis obat.
+""")
 
-section_title("brain", "Catatan Metodologis (untuk naskah Q1)")
+with st.expander("📊 Cara memakai halaman Dashboard Pengujian"):
+    st.markdown("""
+Halaman ini untuk menguji sistem pada banyak foto sekaligus, bukan satu per satu. Ada dua
+cara mengisi data ujinya (pilih salah satu di sidebar):
+
+- **Folder lokal** - kalau Anda menjalankan website ini di komputer/server sendiri dan sudah
+  punya kumpulan foto uji beserta data acuannya di dalam satu folder.
+- **Upload dari browser** - unggah beberapa foto langsung dari perangkat Anda, lalu tempelkan
+  data acuannya (format JSON) ke kotak teks yang disediakan.
+
+Setelah data uji siap, klik **🚀 Jalankan Pengujian Batch** dan sistem akan memproses semua
+foto sekaligus, menampilkan tingkat akurasi, tabel hasil per foto, dan ringkasan kesalahan
+yang terjadi.
+""")
+
+with st.expander("📈 Cara membaca halaman Hasil Riset"):
+    st.markdown("""
+Halaman ini berisi bukti-bukti ilmiah di balik sistem ini, disajikan dalam beberapa tab:
+
+- **🏆 Baseline/SOTA** - perbandingan performa beberapa arsitektur AI yang diuji.
+- **🧪 Ablation Study** - pengujian pengaruh berbagai pengaturan (ukuran model, resolusi
+  gambar, skema pelatihan, dll) terhadap hasil.
+- **⚡ Latency** - seberapa cepat sistem memproses satu foto.
+- **🩺 Data Asli RSUD** - hasil pengujian memakai foto asli dari rumah sakit (kalau sudah
+  tersedia).
+- **🔍 Error Analysis** - rincian kapan dan kenapa sistem cenderung salah mendeteksi atau
+  mengklasifikasi.
+- **🧠 Explainability** - visualisasi bagian gambar mana yang paling memengaruhi keputusan AI.
+- **🔗 Simulasi E-Resep** - simulasi seberapa cepat seluruh alur (foto sampai status akhir)
+  berjalan dari ujung ke ujung.
+
+Anda tidak perlu memahami detail teknis di halaman ini untuk memakai fitur verifikasi obat -
+halaman ini lebih ditujukan bagi yang tertarik pada sisi riset dan validasi ilmiah sistem.
+""")
+
+# ------------------------------------------------------------------
+# 4. Tujuan pembuatan website
+# ------------------------------------------------------------------
+section_title("shield", "Tujuan Pembuatan Website Ini")
 st.markdown("""
-- Dataset publik yang dipakai untuk melatih model ini **hanya untuk pembuktian konsep**.
-  Untuk klaim final di naskah jurnal, model wajib di-*fine-tune* dengan foto obat asli dari
-  RSUD Haji sesuai tata kelola data (proposal BAB III.2).
-- Halaman **📈 Hasil Riset** memuat catatan jujur soal keterbatasan tiap eksperimen
-  (jumlah seed, pendekatan AP@0.75, dsb) — baca sebelum menuliskan bagian Diskusi/Limitasi.
+Website ini dibuat sebagai bagian dari riset untuk menjajaki apakah teknologi *computer
+vision* dapat membantu proses verifikasi obat di instalasi farmasi rumah sakit, dengan
+tujuan:
+
+- **Mempercepat proses pengecekan** kesesuaian obat dengan resep, yang biasanya dilakukan
+  secara manual oleh tenaga farmasi.
+- **Mengurangi risiko kesalahan manusia** (human error) akibat kelelahan atau beban kerja
+  tinggi, tanpa menghilangkan peran pengawasan manusia.
+- **Menjadi bahan riset ilmiah** yang bisa dipublikasikan dan dikembangkan lebih lanjut,
+  baik oleh tim ITS maupun peneliti lain di bidang serupa.
+- **Menjadi purwarupa (prototipe) awal** yang bisa terus disempurnakan sebelum
+  dipertimbangkan untuk dipakai secara nyata di lingkungan rumah sakit.
+""")
+
+# ------------------------------------------------------------------
+# 5. Keterbatasan website (untuk publik)
+# ------------------------------------------------------------------
+section_title("brain", "Yang Perlu Anda Ketahui Sebelum Memakai Sistem Ini")
+st.markdown("""
+- Ini adalah **prototipe riset tahap awal**, bukan produk medis yang sudah disertifikasi
+  untuk penggunaan klinis penuh.
+- Model AI saat ini masih dilatih dari **dataset foto publik**, sehingga tingkat akurasinya
+  pada foto obat asli di lapangan (misalnya kondisi pencahayaan atau kemasan obat yang
+  berbeda-beda) masih dalam tahap penyempurnaan lebih lanjut.
+- Sistem bisa saja salah mendeteksi jumlah maupun jenis obat, terutama pada foto dengan
+  pencahayaan gelap, objek yang sangat kecil, atau obat yang ditata terlalu rapat/menumpuk.
+- Status **TIDAK YAKIN** atau **GANGGUAN DATA** sengaja ditampilkan setiap kali sistem tidak
+  cukup percaya diri dengan hasilnya, atau data e-reseonya tidak lengkap - ini justru
+  bagian dari desain keamanan sistem, supaya sistem tidak pernah "asal menyatakan sesuai".
+- Anggap hasil dari website ini sebagai **alat bantu**, bukan pengganti pemeriksaan manual.
+  Keputusan akhir soal kesesuaian obat tetap harus dilakukan oleh tenaga farmasi yang
+  berwenang.
+- Kalau Anda menemukan hasil yang tampak keliru atau mengalami kendala saat memakai
+  website ini, silakan hubungi pengembang untuk membantu proses perbaikan sistem ke
+  depannya.
 """)
