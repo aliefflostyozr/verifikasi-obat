@@ -50,7 +50,7 @@ with st.sidebar:
         manifest_text = st.text_area("Paste isi manifest.json di sini", height=160,
                                       placeholder='[{"image": "foto1.jpg", "eresep": [...], "expected_status": "SESUAI"}]')
 
-    run_batch = st.button("🚀 Jalankan Pengujian Batch", type="primary", use_container_width=True)
+    run_batch = st.button("🚀 Jalankan Pengujian Batch", type="primary", width="stretch")
 
 if not Path(detector_path).exists():
     st.error(f"Bobot detector tidak ditemukan di `{detector_path}`. Cek halaman **Tentang & Setup**.")
@@ -172,9 +172,9 @@ if "batch_results_df" in st.session_state:
             labels = sorted(set(df["expected_status"].dropna()) | set(df["predicted_status"]))
             cm = pd.crosstab(df["expected_status"], df["predicted_status"]).reindex(
                 index=labels, columns=labels, fill_value=0)
-            st.dataframe(cm, use_container_width=True)
+            st.dataframe(cm, width="stretch")
 
     st.write("")
     st.markdown("**Rincian per foto**")
-    st.dataframe(df, use_container_width=True, height=320)
+    st.dataframe(df, width="stretch", height=320)
     st.download_button("⬇️ Unduh hasil (CSV)", df.to_csv(index=False), "hasil_pengujian_batch.csv", "text/csv")
