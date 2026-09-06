@@ -76,7 +76,7 @@ if st.button("➕ Tambah obat"):
     st.rerun()
 
 st.write("")
-run_clicked = st.button("🚀 Jalankan Verifikasi", type="primary", use_container_width=True)
+run_clicked = st.button("🚀 Jalankan Verifikasi", type="primary", width="stretch")
 
 if run_clicked:
     if uploaded_photo is None:
@@ -104,7 +104,7 @@ if run_clicked:
     with col_img:
         annotated_rgb = cv2.cvtColor(output["annotated_image"], cv2.COLOR_BGR2RGB)
         st.image(annotated_rgb, caption="Hasil deteksi (kotak hijau=sesuai, merah=tidak sesuai, oranye=tidak yakin)",
-                  use_container_width=True)
+                  width="stretch")
     with col_detail:
         st.markdown("**Rincian per jenis obat**")
         for item in match.detail_per_obat:
