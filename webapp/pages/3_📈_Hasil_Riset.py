@@ -220,6 +220,7 @@ with tabs[3]:
     else:
         st.info(
             "Belum ada hasil evaluasi data asli. Nanti akan ditambahkan data asli jika sudah ada"
+            "data dari RSUD Haji Provinsi Jawa Timur."
         )
 
 # --- 5. Error analysis ---
