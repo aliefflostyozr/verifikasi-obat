@@ -1,0 +1,8 @@
+{
+  "model_name": "mobilenet_v3_small",
+  "seed": 0,
+  "best_val_acc": 0.638388625592417,
+  "train_time_sec": 83.46274876594543,
+  "epochs": 5,
+  "augment": true
+}

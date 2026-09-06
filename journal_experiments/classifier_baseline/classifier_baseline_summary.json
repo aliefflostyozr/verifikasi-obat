@@ -1,0 +1,174 @@
+{
+  "summary": {
+    "mobilenet_v3_small": {
+      "n_seeds": 1,
+      "accuracy": {
+        "mean": 0.9071090047393365,
+        "std": 0.0,
+        "low": 0.9071090047393365,
+        "high": 0.9071090047393365,
+        "n": 1
+      },
+      "macro_f1": {
+        "mean": 0.8529168733740365,
+        "std": 0.0,
+        "low": 0.8529168733740365,
+        "high": 0.8529168733740365,
+        "n": 1
+      },
+      "auc_roc_ovr_macro": {
+        "mean": 0.9969124917070813,
+        "std": 0.0,
+        "low": 0.9969124917070813,
+        "high": 0.9969124917070813,
+        "n": 1
+      }
+    },
+    "efficientnet_b0": {
+      "n_seeds": 1,
+      "accuracy": {
+        "mean": 0.9199052132701422,
+        "std": 0.0,
+        "low": 0.9199052132701422,
+        "high": 0.9199052132701422,
+        "n": 1
+      },
+      "macro_f1": {
+        "mean": 0.8714314114901556,
+        "std": 0.0,
+        "low": 0.8714314114901556,
+        "high": 0.8714314114901556,
+        "n": 1
+      },
+      "auc_roc_ovr_macro": {
+        "mean": 0.9972053761720565,
+        "std": 0.0,
+        "low": 0.9972053761720565,
+        "high": 0.9972053761720565,
+        "n": 1
+      }
+    },
+    "resnet50": {
+      "n_seeds": 1,
+      "accuracy": {
+        "mean": 0.909478672985782,
+        "std": 0.0,
+        "low": 0.909478672985782,
+        "high": 0.909478672985782,
+        "n": 1
+      },
+      "macro_f1": {
+        "mean": 0.8677052196353694,
+        "std": 0.0,
+        "low": 0.8677052196353694,
+        "high": 0.8677052196353694,
+        "n": 1
+      },
+      "auc_roc_ovr_macro": {
+        "mean": 0.9966774258234876,
+        "std": 0.0,
+        "low": 0.9966774258234876,
+        "high": 0.9966774258234876,
+        "n": 1
+      }
+    },
+    "densenet121": {
+      "n_seeds": 1,
+      "accuracy": {
+        "mean": 0.9004739336492891,
+        "std": 0.0,
+        "low": 0.9004739336492891,
+        "high": 0.9004739336492891,
+        "n": 1
+      },
+      "macro_f1": {
+        "mean": 0.8450950737576286,
+        "std": 0.0,
+        "low": 0.8450950737576286,
+        "high": 0.8450950737576286,
+        "n": 1
+      },
+      "auc_roc_ovr_macro": {
+        "mean": 0.995597150318428,
+        "std": 0.0,
+        "low": 0.995597150318428,
+        "high": 0.995597150318428,
+        "n": 1
+      }
+    }
+  },
+  "significance_tests_macro_f1": {
+    "mobilenet_v3_small_vs_efficientnet_b0": {
+      "bootstrap": {
+        "mean_diff_a_minus_b": -0.018514538116119028,
+        "diff_ci95": [
+          -0.018514538116119028,
+          -0.018514538116119028
+        ],
+        "p_value_approx": 0.0,
+        "significant_at_0.05": true,
+        "n_pairs": 1
+      }
+    },
+    "mobilenet_v3_small_vs_resnet50": {
+      "bootstrap": {
+        "mean_diff_a_minus_b": -0.014788346261332852,
+        "diff_ci95": [
+          -0.014788346261332852,
+          -0.014788346261332852
+        ],
+        "p_value_approx": 0.0,
+        "significant_at_0.05": true,
+        "n_pairs": 1
+      }
+    },
+    "mobilenet_v3_small_vs_densenet121": {
+      "bootstrap": {
+        "mean_diff_a_minus_b": 0.007821799616407943,
+        "diff_ci95": [
+          0.007821799616407943,
+          0.007821799616407943
+        ],
+        "p_value_approx": 0.0,
+        "significant_at_0.05": true,
+        "n_pairs": 1
+      }
+    },
+    "efficientnet_b0_vs_resnet50": {
+      "bootstrap": {
+        "mean_diff_a_minus_b": 0.003726191854786176,
+        "diff_ci95": [
+          0.003726191854786176,
+          0.003726191854786176
+        ],
+        "p_value_approx": 0.0,
+        "significant_at_0.05": true,
+        "n_pairs": 1
+      }
+    },
+    "efficientnet_b0_vs_densenet121": {
+      "bootstrap": {
+        "mean_diff_a_minus_b": 0.02633633773252697,
+        "diff_ci95": [
+          0.02633633773252697,
+          0.02633633773252697
+        ],
+        "p_value_approx": 0.0,
+        "significant_at_0.05": true,
+        "n_pairs": 1
+      }
+    },
+    "resnet50_vs_densenet121": {
+      "bootstrap": {
+        "mean_diff_a_minus_b": 0.022610145877740795,
+        "diff_ci95": [
+          0.022610145877740795,
+          0.022610145877740795
+        ],
+        "p_value_approx": 0.0,
+        "significant_at_0.05": true,
+        "n_pairs": 1
+      }
+    }
+  }
+}

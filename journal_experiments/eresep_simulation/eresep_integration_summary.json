@@ -1,0 +1,7 @@
+{
+  "n_requests": 50,
+  "mean_total_ms": 217.94389724731445,
+  "p95_total_ms": 905.8366537094106,
+  "mean_mock_api_ms": 30.819058418273926,
+  "meets_30min_target": true
+}

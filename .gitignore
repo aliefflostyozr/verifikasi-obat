@@ -1,0 +1,23 @@
+# Virtual environment
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# File OS
+.DS_Store
+Thumbs.db
+
+# Dataset uji besar (220MB) - TIDAK perlu ikut di-deploy.
+# Di versi live, uji sistem lewat mode "Upload dari browser"
+# di halaman Dashboard Pengujian.
+data/test_package/
+data/test_package.zip
+
+# Rar/zip asli, tidak perlu ikut ke repo
+*.rar
+*.zip
+
+# Streamlit secrets (kalau nanti Anda tambahkan API key dll)
+.streamlit/secrets.toml

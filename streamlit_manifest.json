@@ -1,0 +1,7 @@
+{
+  "detector_weights": "D:\\S2 ITS\\VERIFIKASI OBAT\\webapp\\runs\\detect\\pill_detector\\weights\\best.pt",
+  "classifier_weights": "D:\\S2 ITS\\VERIFIKASI OBAT\\webapp\\runs\\classify_final\\best.pt",
+  "classifier_classes_json": "D:\\S2 ITS\\VERIFIKASI OBAT\\webapp\\runs\\classify_final\\class_names.json",
+  "detector_metrics": "D:\\S2 ITS\\VERIFIKASI OBAT\\detector_metrics.json",
+  "journal_experiments_dir": "D:\\S2 ITS\\VERIFIKASI OBAT\\journal_experiments"
+}

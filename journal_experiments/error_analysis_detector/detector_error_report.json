@@ -1,0 +1,11 @@
+{
+  "kategori_error": {
+    "FN_objek_kecil": 586,
+    "FN_area_padat": 661,
+    "FP_tanpa_gt_pasangan": 715,
+    "FN_lainnya": 13,
+    "FN_pencahayaan_gelap": 1
+  },
+  "n_fn_examples_disimpan": 12,
+  "n_fp_examples_disimpan": 12
+}

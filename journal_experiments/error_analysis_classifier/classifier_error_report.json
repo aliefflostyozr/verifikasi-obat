@@ -1,0 +1,80 @@
+{
+  "top_confusion_pairs": [
+    {
+      "true": "HK-27294",
+      "pred": "HK-05565",
+      "count": 10
+    },
+    {
+      "true": "HK-42892",
+      "pred": "HK-64636",
+      "count": 8
+    },
+    {
+      "true": "HK-47882",
+      "pred": "HK-05565",
+      "count": 8
+    },
+    {
+      "true": "HK-56748",
+      "pred": "HK-05565",
+      "count": 8
+    },
+    {
+      "true": "HK-05565",
+      "pred": "HK-49649",
+      "count": 7
+    },
+    {
+      "true": "HK-05565",
+      "pred": "HK-27294",
+      "count": 7
+    },
+    {
+      "true": "HK-44466",
+      "pred": "HK-34319",
+      "count": 7
+    },
+    {
+      "true": "HK-05565",
+      "pred": "HK-56748",
+      "count": 4
+    },
+    {
+      "true": "HK-27294",
+      "pred": "HK-49649",
+      "count": 4
+    },
+    {
+      "true": "HK-27294",
+      "pred": "HK-64636",
+      "count": 4
+    },
+    {
+      "true": "HK-43787",
+      "pred": "HK-44618",
+      "count": 4
+    },
+    {
+      "true": "HK-44466",
+      "pred": "HK-61383",
+      "count": 4
+    },
+    {
+      "true": "HK-56748",
+      "pred": "HK-27294",
+      "count": 4
+    },
+    {
+      "true": "HK-64636",
+      "pred": "HK-05565",
+      "count": 4
+    },
+    {
+      "true": "HK-64636",
+      "pred": "HK-42892",
+      "count": 4
+    }
+  ],
+  "n_misclassified_total": 205
+}

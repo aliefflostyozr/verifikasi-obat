@@ -1,0 +1,9 @@
+{
+  "medical_pills": "data/raw/medical-pills",
+  "roboflow_pill_detection": null,
+  "kaggle_pills_detection": "data/raw/pills-detection-dataset",
+  "mediseg": "/kaggle/input/datasets/aliefflostyo/mediseg",
+  "cure": null,
+  "pharma_recognition": null,
+  "custom": null
+}

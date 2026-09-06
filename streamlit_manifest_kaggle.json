@@ -1,0 +1,6 @@
+{
+  "detector_weights": "detector_main_best.pt",
+  "classifier_weights": "classifier_main_best.pt",
+  "classifier_classes_json": "classifier_main_class_names.json",
+  "classifier_model_name": "mobilenet_v3_small"
+}

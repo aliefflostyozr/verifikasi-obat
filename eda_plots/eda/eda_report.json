@@ -1,0 +1,27 @@
+{
+  "jumlah_gambar_per_sumber_raw": {
+    "medical-pills": 115,
+    "pills-detection-dataset": 12067,
+    "pharmaceutical-drug-recognition": 0
+  },
+  "n_gambar_dianalisis_properti": 450,
+  "resolusi": {
+    "width_mean": 784.3222222222222,
+    "width_std": 247.88078800449298,
+    "height_mean": 721.4688888888888,
+    "height_std": 174.64614424248086,
+    "aspect_ratio_mean": 1.108602686779493
+  },
+  "brightness": {
+    "mean": 138.18760419196906,
+    "std": 25.509011583417124,
+    "min": 32.53982495023696,
+    "max": 204.2699251423095
+  },
+  "bbox_per_gambar": {
+    "mean": 11.99671619735654,
+    "median": 6.0,
+    "max": 433,
+    "min": 0
+  }
+}

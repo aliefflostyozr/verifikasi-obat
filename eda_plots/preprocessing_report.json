@@ -1,0 +1,9 @@
+{
+  "corrupt": 0,
+  "too_small": 0,
+  "duplicates": 149,
+  "label_lines_dropped": 0,
+  "total_before": 12181,
+  "total_after": 12032,
+  "imagehash_tersedia": true
+}

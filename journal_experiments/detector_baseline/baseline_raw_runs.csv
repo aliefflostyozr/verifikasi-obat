@@ -1,0 +1,4 @@
+epochs,eval_split,imgsz,mAP50,mAP50_95,model_name,precision,recall,seed,train_time_sec,weights_path
+3,test,640,0.9916530489187219,0.9165668088426413,yolov8n.pt,0.9772519367694091,0.9656608461873835,0,261.81152057647705,/kaggle/working/pill_system/runs/detect/runs/journal/detector_baseline/runs/yolov8n_seed0/weights/best.pt
+3,test,640,0.9907765067064929,0.9089956440275724,yolov5nu.pt,0.980916860106348,0.9596381066610193,0,265.88469982147217,/kaggle/working/pill_system/runs/detect/runs/journal/detector_baseline/runs/yolov5nu_seed0/weights/best.pt
+3,test,640,0.9908337259342471,0.9145210165403064,yolo11n.pt,0.9804338627735961,0.9625205737126734,0,328.5362460613251,/kaggle/working/pill_system/runs/detect/runs/journal/detector_baseline/runs/yolo11n_seed0/weights/best.pt
